@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-		int n = 0;
+	int n = 0;
 	int half = 0;
 	string temp = "";
 	int index = 0;
