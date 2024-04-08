@@ -2,7 +2,7 @@
 #include <algorithm>
 using namespace std;
 
-bool Compair(string a, string b)
+bool Compare(string a, string b)
 {
 	if (a.length() == b.length())
 	{
@@ -24,7 +24,7 @@ int main()
 		cin >> temp;
 		words[i] = temp;
 	}
-	sort(words.begin(), words.end(), Compair);
+	sort(words.begin(), words.end(), Compare);
 	for (int i = 0; i < count; i++)
 	{
 		if (i != 0)
