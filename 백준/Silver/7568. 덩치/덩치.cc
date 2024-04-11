@@ -14,10 +14,6 @@ struct Stat
 		weight = 0;
 		rank = 0;
 	}
-	void SetRank(int r)
-	{
-		rank = r;
-	}
 	bool operator== (Stat& s)
 	{
 		if (this->index == s.index)
