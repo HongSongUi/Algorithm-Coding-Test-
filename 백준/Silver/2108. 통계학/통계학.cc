@@ -52,10 +52,6 @@ int main()
 		sort(buff.begin(), buff.end());
 		mod = buff[1];
 	}	
-    if (ave == 0)
-	{
-		ave*= -1;
-	}
 	range = arr[n - 1] - arr[0];
 	cout << ave << "\n" << mid << "\n" << mod << "\n" << range;
 }
