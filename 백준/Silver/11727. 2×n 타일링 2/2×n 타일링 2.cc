@@ -17,13 +17,12 @@ int main()
 		if (i % 2 == 0)
 		{
 			buff[i] = (buff[i - 1] * 2) + 1;
-			buff[i] %= 10007;
 		}
 		else
 		{
 			buff[i] = (buff[i - 1] * 2) - 1;
-			buff[i] %= 10007;
 		}
+        buff[i] %= 10007;
 	}
 	cout << buff[n];
 }
