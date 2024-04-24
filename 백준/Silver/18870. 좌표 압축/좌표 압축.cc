@@ -10,15 +10,12 @@ int main()
 	int N = 0;
 	cin >> N;
 	vector<int> arr(N);
-	vector<int> buff(N,-1);
-	map<int, int> dis;
+	vector<int> buff(N);
 	for (int i = 0; i < N; i++)
 	{
 		cin >> arr[i];
 		buff[i] = arr[i];
-		dis[arr[i]] = -1;
 	}
-	int num = 0;
 	sort(buff.begin(), buff.end());
 	buff.erase(unique(buff.begin(), buff.end()), buff.end());
 	for (int i = 0; i < arr.size(); i++)
