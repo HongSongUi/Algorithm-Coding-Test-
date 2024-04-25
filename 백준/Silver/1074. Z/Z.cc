@@ -56,6 +56,5 @@ int main()
 	cin >> row >> col;
 	int depth = 0;
 	int count = 0;
-	bool find = false;
 	Search(0, 0, num, num, depth, buff, count);
 }
