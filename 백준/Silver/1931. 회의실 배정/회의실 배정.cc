@@ -16,10 +16,8 @@ int main()
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	
 	int N = 0;
 	cin >> N;
-
 	int start = 0;
 	int end = 0;
 	vector<pair<int, int>> buff(N);
