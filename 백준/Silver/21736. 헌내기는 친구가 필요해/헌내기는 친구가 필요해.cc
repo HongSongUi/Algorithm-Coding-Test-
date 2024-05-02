@@ -5,7 +5,6 @@ int N;
 int M;
 vector<vector<int>> Campus;
 vector<vector<bool>> Visit;
-queue<pair<int, int>> q;
 
 bool Check(int x, int y)
 {
@@ -19,7 +18,7 @@ bool Check(int x, int y)
 	return false;
 }
 
-void FindPeple(int start_x, int start_y, int& count)
+void FindPeple(int start_x, int start_y, int& count,queue<pair<int,int>>&q)
 {
 	q.push(make_pair(start_x, start_y));
 	Visit[start_y][start_x] = true;
@@ -57,6 +56,7 @@ int main()
 	string temp = "";
 	Campus.resize(N, vector<int>(M, 0));
 	Visit.resize(N, vector<bool>(M, false));
+	queue<pair<int, int>> q;
 	int start_x = 0;
 	int start_y = 0;
 	int meet_count = 0;
@@ -85,7 +85,7 @@ int main()
 			}
 		}
 	}
-	FindPeple(start_x, start_y, meet_count);
+	FindPeple(start_x, start_y, meet_count,q);
 	if (meet_count == 0)
 	{
 		cout << "TT";
