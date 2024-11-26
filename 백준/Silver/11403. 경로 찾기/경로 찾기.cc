@@ -6,7 +6,6 @@ bool find_road(vector<vector<int>>& temp, int start, int end)
 	vector<bool> visit(temp.size(), false);
 	queue<int> check;
 	check.push(start);
-	bool have = false;
 	while (check.size() != 0)
 	{
 		int cur = check.front();
@@ -23,7 +22,6 @@ bool find_road(vector<vector<int>>& temp, int start, int end)
 				check.push(num);
 				visit[num] = true;
 			}
-		
 		}
 	}
 	return false;
@@ -38,7 +36,6 @@ int main()
 	cin >> n;
 	vector<vector<int>> graph(n, vector<int>(n, 0));
 	vector<vector<int>> temp(n+1);
-	queue<int> check;
 	int num = 0;
 	for (int i = 0; i < n; i++)
 	{
