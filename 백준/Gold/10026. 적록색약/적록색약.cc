@@ -85,6 +85,7 @@ void RG_BFS(int& rg_count, string target, Point p)
 	}
 	rg_count++;
 }
+
 int main()
 {
 	ios::sync_with_stdio(false);
@@ -135,5 +136,4 @@ int main()
 		}
 	}
 	cout << r_count << " " << rg_count;
-	int a = 0;
 }
