@@ -13,7 +13,7 @@ bool BellmanFord(int pNum , vector<Edge>& graph)
     vector<int> dist(pNum+1, INF);
     dist[1] = 0;
     
-    for (int i = 1; i < pNum; i++)
+    for (int i = 1; i <= pNum; i++)
     {
         for (int j = 0; j < graph.size(); j++)
         {
@@ -23,17 +23,11 @@ bool BellmanFord(int pNum , vector<Edge>& graph)
             if (dist[to] > dist[from] + cost)
             {
                 dist[to] = dist[from] + cost;   
+                if (i == pNum)
+                {
+                    return true;
+                }
             }
-        }
-    }
-    for (int j = 0; j < graph.size(); j++)
-    {
-        int from = graph[j].from;
-        int to = graph[j].to;
-        int cost = graph[j].cost;
-        if (dist[to] > dist[from] + cost)
-        {
-            return true;
         }
     }
     return false;
