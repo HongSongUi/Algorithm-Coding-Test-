@@ -3,7 +3,12 @@ using namespace std;
 #define INF 99999999
 
 void BFS(int sPoint, int ePoint)
-{
+{    
+    if (sPoint == ePoint)
+    {
+        cout << 0 << '\n' << 1;
+        return;
+    }
     vector<int> visited(100001, INF);
     queue<pair<int, int>>q;
     visited[sPoint] = true;
@@ -11,12 +16,7 @@ void BFS(int sPoint, int ePoint)
     
     int d = 0;
     int n = 0;
-    bool isFirst = false;
-    if (sPoint == ePoint)
-    {
-        cout << 0 << '\n' << 1;
-        return;
-    }
+
     while (!q.empty())
     {
         int cur_point = q.front().first;
