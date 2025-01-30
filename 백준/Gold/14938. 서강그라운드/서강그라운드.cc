@@ -27,7 +27,7 @@ void dijkstra(int limit, int pointCount , int start)
         {
             int next_point = graph[cur_point][i].first;
             int next_dist = graph[cur_point][i].second + cur_dist;
-            if (next_dist < dist[next_point] && next_dist <= limit)
+            if (next_dist < dist[next_point])
             {
                 dist[next_point] = next_dist;
                 pq.push(make_pair(-next_dist, next_point));
