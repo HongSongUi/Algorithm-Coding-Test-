@@ -32,6 +32,7 @@ void BFS()
                 {
                     falling = num;
                 }
+                break;
             }
         }
     }
