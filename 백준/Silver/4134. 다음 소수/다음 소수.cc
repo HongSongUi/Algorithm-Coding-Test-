@@ -34,19 +34,12 @@ int main() {
     while (n--)
     {
         cin >> num;
-        while (true)
+        while (!FindPrime(num))
         {
-            bool isPrime = FindPrime(num);
-            if (isPrime)
-            {
-                cout << num << '\n';
-                break;
-            }
-            else
-            {
-                num++;
-            }
+            num++;
         }
+        cout << num << '\n';
     }
+
     return 0;
 }
