@@ -24,7 +24,7 @@ int main() {
 			{
 				if (j == mid - num || j == mid + num)
 				{
-					if (idx != 0 && idx % 3 == 0)
+					if (idx % 3 == 0)
 					{
 						arr[i][j] = '*';
 					}
