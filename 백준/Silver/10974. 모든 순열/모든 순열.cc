@@ -3,7 +3,7 @@ using namespace std;
 vector<bool> visited;
 vector<int> tmp;
 int n;
-void Func(int start)
+void Func()
 {
 	if (tmp.size() == n)
 	{
@@ -20,7 +20,7 @@ void Func(int start)
 		{
 			visited[i] = true;
 			tmp.emplace_back(i);
-			Func(i + 1);
+			Func();
 			visited[i] = false;
 			tmp.pop_back();
 		}
@@ -34,6 +34,6 @@ int main()
 	
 	cin >> n;
 	visited.resize(n + 1, false);
-	Func(1);
+	Func();
 	return 0;
 }
