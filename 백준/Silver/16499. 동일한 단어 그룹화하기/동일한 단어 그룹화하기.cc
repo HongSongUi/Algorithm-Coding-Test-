@@ -6,17 +6,15 @@ int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
-
 	int n = 0;
 	cin >> n;
 	string s = "";
-	map<string, int>tmp;
-	
+	set<string> tmp;
 	while (n--)
 	{
 		cin >> s;
 		sort(s.begin(), s.end());
-		tmp[s]++;
+		tmp.insert(s);
 	}
 	cout << tmp.size();
 	return 0;
