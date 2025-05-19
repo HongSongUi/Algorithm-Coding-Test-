@@ -1,54 +1,31 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
-struct MemberData
+bool compare(const tuple<int,int,string>&a , const tuple<int, int , string>& b)
 {
-	int Index;
-	int Age;
-	string Name;
-	MemberData()
-	{
-		Index = 0;
-		Age = 0;
-		Name = "";
-	}
-	MemberData(int index ,int age, string name)
-	{
-		Index = index;
-		Age = age;
-		Name = name;
-	}
-};
-bool Compare(MemberData a, MemberData b)
-{
-	if(a.Age == b.Age)
-	{
-		return a.Index < b.Index;
-	}
-	else
-	{
-		return a.Age < b.Age;
-	}
+	if (get<1>(a) == get<1>(b)) return get<0>(a) < get<0>(b);
+	return get<1>(a) < get<1>(b);
 }
+
 int main()
 {
-	int count = 0;
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+
+	int n = 0;
+	cin >> n;
+	vector<tuple<int, int, string>> arr(n); // index , age , name
 	int age = 0;
 	string name = "";
-	cin >> count;
-	vector<MemberData> DataArray(count);
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < n; i++)
 	{
-		cin >> age;
-		cin >> name;
-		MemberData data(i,age, name);
-		DataArray[i] = data;
+		cin >> age >> name;
+		arr[i] = make_tuple(i, age, name);
 	}
-	sort(DataArray.begin(), DataArray.end(), Compare);
-	for (int i = 0; i < count; i++)
+	sort(arr.begin(), arr.end(), compare);
+	for (int i = 0; i < n; i++)
 	{
-		cout << DataArray[i].Age << " " << DataArray[i].Name << "\n";
+		cout << get<1>(arr[i]) << ' ' << get<2>(arr[i]) << '\n';
 	}
+	return 0;
 }
