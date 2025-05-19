@@ -1,20 +1,23 @@
-#include <iostream>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-
+// 오름차순 정렬 -> 단순히 sort사용
+// O(n log n)
 int main()
 {
-	int count = 0;
-	cin >> count;
-	vector<int> temp(count);
-	for (int i = 0; i < count; i++)
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+
+	int n = 0;
+	cin >> n;
+	vector<int> arr(n);
+	for (int i = 0; i < n; i++)
 	{
-		cin >> temp[i];
+		cin >> arr[i];
 	}
-	sort(temp.begin(), temp.end());
-	for (int i = 0; i < count; i++)
+	sort(arr.begin(), arr.end());
+	for (int i = 0; i < n; i++)
 	{
-		cout << temp[i] <<"\n";
+		cout << arr[i] << "\n";
 	}
-	int a = 0;
+	return 0;
 }
