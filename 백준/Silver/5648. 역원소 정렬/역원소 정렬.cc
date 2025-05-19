@@ -1,25 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+
+int main()
+{
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
-	
-	vector<long long> arr;
-	long long num = 0;
+
 	int n = 0;
 	cin >> n;
+	vector<long long> arr(n);
 	string s = "";
-
-	while (n--)
+	for (int i = 0; i < n; i++)
 	{
 		cin >> s;
 		reverse(s.begin(), s.end());
-		num = stoll(s);
-		arr.emplace_back(num);
+		arr[i] = (stoll(s));
 	}
 	sort(arr.begin(), arr.end());
-	for (int i = 0; i < arr.size(); i++)
+	for (int i = 0; i < n; i++)
 	{
 		cout << arr[i] << '\n';
 	}
