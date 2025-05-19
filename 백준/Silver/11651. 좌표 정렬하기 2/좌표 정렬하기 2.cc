@@ -1,43 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Point 
+bool cmp(const pair<int, int>& a, const pair<int, int>& b)
 {
-	int x, y;
-	Point()
-	{
-		x = 0;
-		y = 0;
-	}
-};
-
-bool Compair(Point & a , Point& b)
-{
-	if (a.y == b.y)
-	{
-		return a.x<b.x;
-	}
-	return a.y < b.y;
+	if (a.second == b.second) return a.first < b.first;
+	return a.second < b.second;
 }
 
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	cin.tie(nullptr);
 
 	int n = 0;
 	cin >> n;
-	vector<Point> temp(n);
-
+	vector<pair<int, int>> graph(n);
 	for (int i = 0; i < n; i++)
 	{
-		cin >> temp[i].x >> temp[i].y;
+		cin >> graph[i].first >> graph[i].second;
 	}
-	sort(temp.begin(), temp.end(), Compair);
-	
+	sort(graph.begin(), graph.end(), cmp);
 	for (int i = 0; i < n; i++)
 	{
-		cout << temp[i].x << " " << temp[i].y << "\n";
+		cout << graph[i].first << ' ' << graph[i].second << '\n';
 	}
+	return 0;
 }
