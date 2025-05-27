@@ -1,45 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	cin.tie(nullptr);
 
-	int N, M = 0;
-	cin >> N >> M;
-	vector<int> buff(N);
-	long long sum = 0;
-	for (int i = 0; i < N; i++)
+	int n = 0, m = 0;
+	cin >> n >> m;
+	vector<int> trees(n, 0);
+	for (int i = 0; i < n; i++)
 	{
-		cin >> buff[i];
+		cin >> trees[i];
 	}
-	sort(buff.begin(), buff.end());
-	int start = 0;
-	int end = buff[N - 1];
-	int mid = 0;
-	int result = 0;
-	while (start <= end)
+	sort(trees.begin(), trees.end());
+	int left = 0;
+	int right = trees[n - 1];
+	long long answer = 0;
+	while (left <= right)
 	{
-		sum = 0;
-		mid = (start + end) / 2;
-		for (int i = 0; i < N; i++)
+		long long mid = (left + right) / 2;
+		long long total = 0;
+		for (int i = 0; i < n; i++)
 		{
-			if (buff[i] >= mid)
+			if (trees[i] >= mid) 
 			{
-				sum += buff[i] - mid;
+				total += trees[i] - mid;
 			}
 		}
-		if (sum >= M)
+		if (total >= m)
 		{
-			result = mid;
-			start = mid + 1;
+			answer = mid;
+			left = mid + 1;
 		}
 		else
 		{
-			end = mid - 1;
+			right = mid - 1;
 		}
 	}
-	cout << result;
+	cout << answer;
+	return 0;
 }
