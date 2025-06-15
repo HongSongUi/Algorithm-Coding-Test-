@@ -9,27 +9,32 @@ int main()
 
 	int n = 0;
 	cin >> n;
-	int num = 0;
-	priority_queue<int, vector<int>, greater<int>> buff;
-	while (n > 0)
+	
+	priority_queue<int, vector<int>, greater<int>> pq;
+	int x = 0;
+	while (n--)
 	{
-		cin >> num;
-		if (num == 0)
+		cin >> x;
+		if (x == 0)
 		{
-			if (buff.empty())
+			if (pq.empty())
 			{
-				cout << "0" << "\n";
+				cout << 0 << '\n';
 			}
 			else
 			{
-				cout << buff.top() << "\n";
-				buff.pop();
+				cout << pq.top() << '\n';
+				pq.pop();
 			}
 		}
 		else
 		{
-			buff.push(num);
+			pq.push(x);
 		}
-		n--;
+
 	}
+
+
+
+	return 0;
 }
