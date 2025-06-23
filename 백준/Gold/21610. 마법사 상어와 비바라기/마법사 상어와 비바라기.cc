@@ -123,7 +123,6 @@ int main()
 		MoveCloud(cloud, arr, cur_d, cur_s);
 		CopyWater(cloud, arr);
 		CreateCloud(cloud, arr);
-		int a = 0;
 	}
 	int answer = 0;
 	for (int i = 0; i < n; i++)
