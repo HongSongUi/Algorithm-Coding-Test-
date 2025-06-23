@@ -103,24 +103,17 @@ int main()
 			cin >> arr[i][j];
 		}
 	}
-	queue<pair<int, int>>q; // dir, size
 	int d = 0;
 	int s = 0;
-	for (int i = 0; i < m; i++)
-	{
-		cin >> d >> s;
-		q.push(make_pair(d-1, s));
-	}
+
 	cloud[n - 1][0] = true;
 	cloud[n - 1][1] = true;
 	cloud[n - 2][0] = true;
 	cloud[n - 2][1] = true;
-	while (!q.empty())
+	while (m--)
 	{
-		int cur_d = q.front().first;
-		int cur_s = q.front().second;
-		q.pop();
-		MoveCloud(cloud, arr, cur_d, cur_s);
+		cin >> d >> s;
+		MoveCloud(cloud, arr, d-1, s);
 		CopyWater(cloud, arr);
 		CreateCloud(cloud, arr);
 	}
