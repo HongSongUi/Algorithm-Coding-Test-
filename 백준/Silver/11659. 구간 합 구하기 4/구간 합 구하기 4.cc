@@ -1,30 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
-	
-	int n = 0;
-	int k = 0;
-	cin >> n >> k;
-	int start = 0;
-	int end = 0;
-	long long result = 0;
-	vector<int> buff(n + 1, 0);
-	vector<long long> sum(n + 1, 0);
-	for (int i = 1; i < n + 1; i++)
+
+	int n = 0 ,  t = 0;
+	cin >> n >> t;
+	vector<int> arr(n+1);
+	vector<int> sum(n+1,0);
+	for (int i = 1; i <= n; i++)
 	{
-		cin >> buff[i];
-		sum[i] = sum[i - 1] + buff[i];
+		cin >> arr[i];
 	}
-	while (k > 0)
+	for (int i = 1; i <= n; i++)
 	{
-		cin >> start >> end;
-		result = sum[end] - sum[start - 1];
-		cout << result << "\n";
-        k--;
+		sum[i] = sum[i - 1] + arr[i];
 	}
+	int s = 0;
+	int e = 0;
+	while (t--)
+	{
+		cin >> s >> e;
+		cout << sum[e] - sum[s - 1] << '\n';
+	}
+	return 0;
 }
