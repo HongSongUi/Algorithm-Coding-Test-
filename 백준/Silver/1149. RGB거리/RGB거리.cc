@@ -1,13 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+
+int main()
+{
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
 	int n = 0;
 	cin >> n;
-	vector<vector<int>> arr(n, vector<int>(n, 0));
+	vector<vector<int>> arr(n, vector<int>(3,0));
+	vector<vector<int>> dp(n, vector<int>(3, 0));
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < 3; j++)
@@ -15,7 +19,8 @@ int main() {
 			cin >> arr[i][j];
 		}
 	}
-	vector<vector<int>> dp(n, vector<int>(3, 0));
+	int idx = 0;
+	int answer = 0;
 	for (int i = 0; i < 3; i++)
 	{
 		dp[0][i] = arr[0][i];
@@ -26,6 +31,6 @@ int main() {
 		dp[i][1] = arr[i][1] + min(dp[i - 1][0], dp[i - 1][2]);
 		dp[i][2] = arr[i][2] + min(dp[i - 1][0], dp[i - 1][1]);
 	}
-	int answer = *min_element(dp[n - 1].begin(), dp[n - 1].end());
-	cout << answer;
+	cout << *min_element(dp[n - 1].begin(), dp[n - 1].end());
+	return 0;
 }
