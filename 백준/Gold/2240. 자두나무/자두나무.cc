@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int T, W, result;
-int arr[1001];
-int dp[3][31][1001]; //위치, 움직임, 시간
 int main()
 {
 	ios::sync_with_stdio(false);
