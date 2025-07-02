@@ -1,54 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
-int n = 0;
-vector<vector<int>> arr;
 
-void BFS()
+int n = 0, m = 0;
+vector<vector<int>> graph;
+
+int BFS()
 {
-    vector<bool> visited(n + 1, false);
-    visited[1] = true; 
-    queue<pair<int, int>> q;
+    vector<bool> visited(n + 1);
+    queue<pair<int,int>> q;
+    visited[1] = true;
     q.push(make_pair(1, 0));
-    set<int> friendList;
+    int ret = 0;
     while (!q.empty())
     {
-        int cur_node = q.front().first;
-        int cur_depth = q.front().second;
+        int cur = q.front().first;
+        int d = q.front().second;
+
         q.pop();
-        if (cur_depth < 3 && cur_depth>0)
+
+        for (int i = 0; i < graph[cur].size(); i++)
         {
-            friendList.insert(cur_node);
-        }
-        for (int i = 0; i < arr[cur_node].size(); i++)
-        {
-            int next_node = arr[cur_node][i];
-            if (!visited[next_node])
+            int next = graph[cur][i];
+            if (!visited[next])
             {
-                visited[next_node] = true;
-                q.push(make_pair(next_node, cur_depth + 1));
+                visited[next] = true;
+                if (d + 1 <= 2) ret++;
+                q.push(make_pair(next, d + 1));
             }
         }
     }
-    cout << friendList.size();
+    return ret;
 }
-
 
 int main() {
     ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
+    cin.tie(NULL);
+    cout.tie(NULL);
     
-    cin >> n;
-    int m = 0;
-    arr.resize(n + 1);
-    cin >> m;
-    int from = 0, to = 0;
+
+    cin >> n >> m;
+    graph.resize(n + 1);
+    int s = 0;
+    int e = 0;
     for (int i = 0; i < m; i++)
     {
-        cin >> from >> to;
-        arr[from].emplace_back(to);
-        arr[to].emplace_back(from);
+        cin >> s >> e;
+        graph[s].emplace_back(e);
+        graph[e].emplace_back(s);
     }
-    BFS();
+    cout << BFS();
     return 0;
 }
