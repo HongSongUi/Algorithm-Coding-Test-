@@ -17,14 +17,15 @@ int N, M, A, B;
 ll C;
 vector<vector<Edge>> adj;
 
-bool canGo(ll maxEdgeCost) {
+bool canGo(ll maxEdgeCost) 
+{
     vector<ll> dist(N + 1, INF);
     priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<>> pq;
     dist[A] = 0;
     pq.push(make_pair( 0, A ));
     while (!pq.empty()) 
     {
-        int cur_dist = pq.top().first;
+        ll cur_dist = pq.top().first;
         int cur_node = pq.top().second;
         pq.pop();
         if (cur_dist > dist[cur_node]) continue;
@@ -61,7 +62,7 @@ int main()
         adj[v].emplace_back(Edge{ u,w });
         mxCost = max(mxCost, w);
     }
-    ll lo = 1;
+    ll lo = 0;
     ll hi = mxCost, ans = -1;
     ll mid = 0;
     while (lo <= hi) 
