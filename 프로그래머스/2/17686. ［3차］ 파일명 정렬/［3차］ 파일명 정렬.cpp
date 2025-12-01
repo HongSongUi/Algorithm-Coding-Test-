@@ -6,19 +6,21 @@ struct FileName
 	string header;
 	int number; 
 	string origin;
-	int idx;
+
 };
 
 bool Cmp(FileName a, FileName b)
 {
-	string h1 = a.header, h2 = b.header;
-	transform(h1.begin(), h1.end(), h1.begin(), ::tolower);
-	transform(h2.begin(), h2.end(), h2.begin(), ::tolower);
-
-	if (h1 != h2) return h1 < h2;
-	if (a.number != b.number) return a.number < b.number;
-	return a.idx < b.idx; // 입력 순서 유지
+	transform(a.header.begin(), a.header.end(), a.header.begin(), ::tolower);
+	transform(b.header.begin(), b.header.end(), b.header.begin(), ::tolower); 
+	if (a.header == b.header) 
+	{
+		return a.number < b.number;
+	} 
+	int result = a.header.compare(b.header);
+	return result < 0;
 }
+
 
 vector<string> solution(vector<string> files) {
     vector<string> answer;
@@ -43,10 +45,9 @@ vector<string> solution(vector<string> files) {
 		name.header = h;
 		name.number = stoi(num);
 		name.origin = tmp;
-		name.idx = i;
 		vec.emplace_back(name);
 	}
-	sort(vec.begin(), vec.end(), Cmp);
+	stable_sort(vec.begin(), vec.end(), Cmp);
 	for (int i = 0; i < vec.size(); i++)
 	{
 		answer.emplace_back(vec[i].origin);
