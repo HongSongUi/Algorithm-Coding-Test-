@@ -1,23 +1,26 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
+
 using namespace std;
-// 오름차순 정렬 -> 단순히 sort사용
-// O(n log n)
+
+
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	int n = 0;
 	cin >> n;
-	vector<int> arr(n);
+	vector<int> vec(n);
 	for (int i = 0; i < n; i++)
 	{
-		cin >> arr[i];
+		cin >> vec[i];
 	}
-	sort(arr.begin(), arr.end());
-	for (int i = 0; i < n; i++)
+	sort(vec.begin(), vec.end());
+	for (int i = 0; i < vec.size(); i++)
 	{
-		cout << arr[i] << "\n";
+		cout << vec[i] << '\n';
 	}
 	return 0;
 }
