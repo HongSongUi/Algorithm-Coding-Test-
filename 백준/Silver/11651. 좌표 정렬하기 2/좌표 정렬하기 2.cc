@@ -1,28 +1,31 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
+
 using namespace std;
 
-bool cmp(const pair<int, int>& a, const pair<int, int>& b)
+bool cmp(pair<int, int> a, pair<int, int>b)
 {
-	if (a.second == b.second) return a.first < b.first;
+	if (b.second == a.second) return a.first < b.first;
 	return a.second < b.second;
 }
 
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	int n = 0;
 	cin >> n;
-	vector<pair<int, int>> graph(n);
+	vector<pair<int, int>>vec(n);
 	for (int i = 0; i < n; i++)
 	{
-		cin >> graph[i].first >> graph[i].second;
+		cin >> vec[i].first >> vec[i].second;
 	}
-	sort(graph.begin(), graph.end(), cmp);
+	sort(vec.begin(), vec.end(), cmp);
 	for (int i = 0; i < n; i++)
 	{
-		cout << graph[i].first << ' ' << graph[i].second << '\n';
+		cout << vec[i].first << ' ' << vec[i].second << '\n';
 	}
 	return 0;
 }
