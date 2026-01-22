@@ -1,28 +1,30 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
+
 using namespace std;
 
 
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	int n = 0;
 	cin >> n;
-	vector<int> arr(10001,0);
-	int num = 0;
+	vector<int> vec(10001);
+	int tmp = 0;
 	for (int i = 0; i < n; i++)
 	{
-		cin >> num;
-		arr[num]++;
+		cin >> tmp;
+		vec[tmp]++;
 	}
-	for (int i = 0; i < 10001; i++)
+	for (int i = 1; i < 10001; i++)
 	{
-		if (arr[i] == 0) continue;
-		while (arr[i] > 0)
+		if (vec[i] == 0) continue;
+		for (int j = 0; j < vec[i]; j++)
 		{
 			cout << i << '\n';
-			arr[i]--;
 		}
 	}
 	return 0;
