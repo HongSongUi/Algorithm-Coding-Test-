@@ -1,36 +1,49 @@
 #include <bits/stdc++.h>
 #include <unordered_map>
+
 using namespace std;
 
-unordered_map<int, int> freq;
-unordered_map<int, int> nIndex;
-bool cmp(int& a, int& b)
+map<int, int> idx;
+map<int, int> cnt;
+
+bool cmp(int a, int b)
 {
-	if (freq[a] == freq[b]) return nIndex[a] < nIndex[b];
-	return freq[a] > freq[b];
+	if (cnt[a] == cnt[b])
+	{
+		return idx[a] < idx[b];
+	}
+	return cnt[a] > cnt[b];
 }
 
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-	int n = 0, c = 0;
+	int n = 0;
+	int c = 0;
 	cin >> n >> c;
-	vector<int> arr(n);
+	vector<int> vec;
+	int number = 0;
 	for (int i = 0; i < n; i++)
 	{
-		cin >> arr[i];
-		if (freq[arr[i]] == 0)
+		cin >> number;
+		if (cnt[number] == 0)
 		{
-			nIndex[arr[i]] = i;
+			vec.emplace_back(number);
+			idx[number] = i;
 		}
-		freq[arr[i]]++;
+		cnt[number]++;
 	}
-	sort(arr.begin(), arr.end(), cmp);
-	for (int i = 0; i < n; i++)
+	sort(vec.begin(), vec.end(), cmp);
+	for (int i = 0; i < vec.size(); i++)
 	{
-		cout << arr[i] << ' ';
+		int freq = cnt[vec[i]];
+		while (freq--)
+		{
+			cout << vec[i] << ' ';
+		}
 	}
 	return 0;
 }
