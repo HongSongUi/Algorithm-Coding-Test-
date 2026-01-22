@@ -18,7 +18,7 @@ int main()
 		cin >> vec[i];
 	}
 	sort(vec.begin(), vec.end());
-	for (int i = 0; i < vec.size(); i++)
+	for (int i = 0; i < n; i++)
 	{
 		cout << vec[i] << '\n';
 	}
