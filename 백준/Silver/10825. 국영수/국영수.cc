@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
 
 using namespace std;
 
@@ -6,43 +7,44 @@ struct Student
 {
 	string name;
 	int kor;
-	int eng;
 	int math;
+	int eng;
 };
-
-bool cmp(const Student& a , const Student& b)
+bool cmp(Student a, Student b)
 {
-	if (a.kor == b.kor &&  a.eng == b.eng && a.math == b.math)
-	{
-		return a.name  < b.name;
-	}
-	if (a.kor == b.kor && a.eng == b.eng)
-	{
-		return a.math > b.math;
-	}
 	if (a.kor == b.kor)
 	{
-		return a.eng <  b.eng;
+		if (a.eng == b.eng)
+		{
+			if (a.math == b.math)
+			{
+				return a.name < b.name;
+			}
+			return a.math > b.math;
+		}
+		return a.eng < b.eng;
 	}
+		
 	return a.kor > b.kor;
 }
-
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
-	
+	cin.tie(NULL);
+	cout.tie(NULL);
+
 	int n = 0;
 	cin >> n;
-	vector<Student> arr(n);
+	vector<Student> vec(n);
 	for (int i = 0; i < n; i++)
 	{
-		cin >> arr[i].name >> arr[i].kor >> arr[i].eng >> arr[i].math;
+		cin >> vec[i].name >> vec[i].kor >> vec[i].eng >> vec[i].math;
 	}
-	sort(arr.begin(), arr.end(), cmp);
+	sort(vec.begin(), vec.end(), cmp);
+
 	for (int i = 0; i < n; i++)
 	{
-		cout << arr[i].name << '\n';
+		cout << vec[i].name << '\n';
 	}
 	return 0;
 }
