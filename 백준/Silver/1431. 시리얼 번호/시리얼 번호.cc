@@ -1,21 +1,34 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
+
 using namespace std;
 
-bool cmp(const string& a, const string& b)
+bool cmp(string a, string b)
 {
-	if (a.length() != b.length()) return a.length() < b.length();
+	if (a.length() != b.length())
+	{
+		return a.length() < b.length();
+	}
 	else if (a.length() == b.length())
 	{
-		int num1 = 0;
-		int num2 = 0;
+		int a_num = 0;
+		int b_num = 0;
 		for (int i = 0; i < a.length(); i++)
 		{
-			num1 = num1 + (a[i] - '0' >= 0 && a[i] - '0' <= 9 ? a[i] - '0' : 0);
-			num2 = num2 + (b[i] - '0' >= 0 && b[i] - '0' <= 9 ? b[i] - '0' : 0);
+			int tmp1 = a[i] - '0';
+			int tmp2 = b[i] - '0';
+			if (tmp1 >= 0 && tmp1 <= 9)
+			{
+				a_num += tmp1;
+			}
+			if (tmp2 >= 0 && tmp2 <= 9)
+			{
+				b_num += tmp2;
+			}
 		}
-		if (num1 != num2)
+		if (a_num != b_num)
 		{
-			return num1 < num2;
+			return a_num < b_num;
 		}
 	}
 	return a < b;
@@ -24,19 +37,22 @@ bool cmp(const string& a, const string& b)
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	int n = 0;
 	cin >> n;
-	vector<string> arr(n);
+	vector<string> vec(n);
+	char t = 'a';
+	int a = t - '0';
 	for (int i = 0; i < n; i++)
 	{
-		cin >> arr[i];
+		cin >> vec[i];
 	}
-	sort(arr.begin(), arr.end(), cmp);
+	sort(vec.begin(), vec.end(), cmp);
 	for (int i = 0; i < n; i++)
 	{
-		cout << arr[i] << '\n';
+		cout << vec[i] << '\n';
 	}
 	return 0;
 }
