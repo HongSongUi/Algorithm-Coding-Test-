@@ -9,7 +9,7 @@ int main()
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
-	
+
 	int t = 0;
 	cin >> t;
 	while (t--)
@@ -19,6 +19,7 @@ int main()
 		cin >> n >> m;
 		vector<int> a(n);
 		vector<int> b(m);
+		int cnt = 0;
 		for (int i = 0; i < n; i++)
 		{
 			cin >> a[i];
@@ -28,16 +29,15 @@ int main()
 			cin >> b[i];
 		}
 		sort(a.begin(), a.end());
-		sort(b.begin(), b.end());
-		int answer = 0;
 		for (int i = 0; i < m; i++)
 		{
-			int tmp = b[i];
-			int idx = upper_bound(a.begin(), a.end(), tmp) - a.begin();
-			int cnt = n - idx;
-			answer += cnt;
+			int target = b[i];
+			int idx = upper_bound(a.begin(), a.end(), target) - a.begin();
+			cnt += (n - idx);
+
 		}
-		cout << answer << '\n';
+		cout << cnt << '\n';
 	}
+
 	return 0;
 }
