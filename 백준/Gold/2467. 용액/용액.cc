@@ -1,38 +1,39 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include <unordered_map>
 
+#define INF 20000001
+using namespace std;
 
 
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-	int n = 0;
+	int n = 0; 
 	cin >> n;
-	vector<int> arr(n);
-
+	vector<int> vec(n);
 	for (int i = 0; i < n; i++)
 	{
-		cin >> arr[i];
+		cin >> vec[i];
 	}
-
-	int min_val = INT_MAX;
 	int left = 0;
 	int right = n - 1;
-	int num1 = 0;
-	int num2 = 0;
-	while (left<right)
+	int maxSum = INT_MAX;
+	int answer1 = 0;
+	int answer2 = 0;
+	while (left < right)
 	{
-		int sum_value = arr[left] + arr[right];
-		if (abs(sum_value) < min_val)
-		{
-			min_val = abs(sum_value);
-			num1 = arr[left];
-			num2 = arr[right];
-		}
+		int s = vec[left] + vec[right];
 
-		if (sum_value < 0)
+		if (abs(s) < maxSum)
+		{
+			maxSum = abs(s);
+			answer1 = vec[left];
+			answer2 = vec[right];
+		}
+		if (s < 0)
 		{
 			left++;
 		}
@@ -41,6 +42,6 @@ int main()
 			right--;
 		}
 	}
-	cout << num1 << ' ' << num2;
+	cout << answer1 << ' ' << answer2;
 	return 0;
 }
