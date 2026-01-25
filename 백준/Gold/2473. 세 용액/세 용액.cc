@@ -1,54 +1,56 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include <unordered_map>
 
+using namespace std;
 
 
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	int n = 0;
+
 	cin >> n;
-	vector<long long> arr(n);
+	vector<long long> vec(n);
 	for (int i = 0; i < n; i++)
 	{
-		cin >> arr[i];
+		cin >> vec[i];
 	}
-	sort(arr.begin(), arr.end());
-	int left = 0;
-	int right = n - 1;
-	long long min_val = LLONG_MAX;
-	int res1 = 0, res2 = 0, res3 = 0;
-	long long sum = 0;
-	for (int i = 0; i < n-2; i++)
+	sort(vec.begin(), vec.end());
+	int r1 = 0;
+	int r2 = 0;
+	int r3 = 0;
+
+	long long min_sum = LLONG_MAX;
+
+	for (int i = 0; i < n - 2 ; i++)
 	{
-		for (int j = i + 1; j < n-1; j++)
+		long long n1 = vec[i];
+		int left = i + 1;
+		int right = n - 1;
+		while (left < right)
 		{
-			left = j+1;
-			right = n - 1;
-			while (left <= right)
+			long long sum = n1 + vec[left] + vec[right];
+			if (min_sum > abs(sum))
 			{
-				int mid = (left + right) / 2;
-				sum = arr[i] + arr[j] + arr[mid];
-				if (abs(sum) < min_val)
-				{
-					min_val = abs(sum);
-					res1 = arr[i];
-					res2 = arr[j];
-					res3 = arr[mid];
-				}
-				if (sum < 0)
-				{
-					left = mid + 1;
-				}
-				else
-				{
-					right = mid - 1;
-				}
+				r1 = n1;
+				r2 = vec[left];
+				r3 = vec[right];
+				min_sum = abs(sum);
+			}
+
+			if (sum < 0)
+			{
+				left++;
+			}
+			else
+			{
+				right--;
 			}
 		}
 	}
-	cout << res1 <<' ' << res2 <<' ' << res3;
+	cout << r1 << ' ' << r2 << ' ' << r3;
 	return 0;
 }
