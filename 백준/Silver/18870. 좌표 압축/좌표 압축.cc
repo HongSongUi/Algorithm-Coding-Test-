@@ -1,5 +1,8 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
+
 using namespace std;
+
 
 int main()
 {
@@ -7,20 +10,25 @@ int main()
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	int N = 0;
-	cin >> N;
-	vector<int> arr(N);
-	vector<int> buff(N);
-	for (int i = 0; i < N; i++)
-	{
-		cin >> arr[i];
-		buff[i] = arr[i];
-	}
-	sort(buff.begin(), buff.end());
-	buff.erase(unique(buff.begin(), buff.end()), buff.end());
-	for (int i = 0; i < arr.size(); i++)
-	{
-		cout << lower_bound(buff.begin(), buff.end(), arr[i])- buff.begin() << " ";
-	}
+	int n = 0;
 
+	cin >> n;
+	vector<int> vec(n);
+	for (int i = 0; i < n; i++)
+	{
+		cin >> vec[i];
+	}
+	vector<int> tmp = vec;
+	sort(tmp.begin(), tmp.end());
+
+	tmp.erase(unique(tmp.begin(), tmp.end()), tmp.end());
+
+	for (int i = 0; i < n; i++)
+	{
+		int target = vec[i];
+		int idx = lower_bound(tmp.begin(), tmp.end(), target) - tmp.begin();
+		cout << idx << ' ';
+	
+	}
+	return 0;
 }
