@@ -1,80 +1,94 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
-int n = 0, m = 0, k = 0;
+int n, m, k;
 vector<vector<int>> graph;
 
-int min_dist = INT_MAX;
-int answer = -1;
-bool find = false;
-vector<int> dx = { -1,0,1,0 };
+vector<int> dx = { -1, 0,1, 0 };
 vector<int> dy = { 0,-1,0,1 };
 
 struct Point
 {
-	int x, y, depth, count;
+	int x;
+	int y;
+	int b;
+	Point(int x, int y, int b)
+	{
+		this->x = x;
+		this->y = y;
+		this->b = b;
+	}
 };
-
 bool IsValid(int x, int y)
 {
 	return (x >= 0 && x < m) && (y >= 0 && y < n);
 }
-int FindDist()
+
+int BFS()
 {
-	vector<vector<vector<bool>>> visited(n, vector<vector<bool>>(m, vector<bool>(k + 1, false)));
-	queue<Point> q;
-	q.push({ 0, 0, 1, 0 });
+	int dist = -1;
+
+	vector<vector<vector<bool>>> visited(n,vector<vector<bool>>(m, vector<bool>(k+1, false)));
+	queue<pair<Point, int>> q;
 	visited[0][0][0] = true;
+	q.push(make_pair(Point(0, 0, 0), 1));
 	while (!q.empty())
 	{
-		int cur_x = q.front().x;
-		int cur_y = q.front().y;
-		int cur_depth = q.front().depth;
-		int cur_count = q.front().count;
+		int cur_x = q.front().first.x;
+		int cur_y = q.front().first.y;
+		int cur_cnt = q.front().first.b;
+		int cur_depth = q.front().second;
 		q.pop();
-		if (cur_x == m - 1 && cur_y == n - 1)
+
+		if (cur_x == (m - 1) && cur_y == (n - 1))
 		{
-			return cur_depth;
+			dist = cur_depth;
+			break;
 		}
+
 		for (int i = 0; i < 4; i++)
 		{
-			int next_x = cur_x + dx[i];
-			int next_y = cur_y + dy[i];
-			if (IsValid(next_x, next_y))
+			int nx = cur_x + dx[i];
+			int ny = cur_y + dy[i];
+			if (IsValid(nx, ny))
 			{
-				if (graph[next_y][next_x] == 0 && !visited[next_y][next_x][cur_count])
+				if (graph[ny][nx] == 1 && cur_cnt < k && !visited[ny][nx][cur_cnt+1])
 				{
-					visited[next_y][next_x][cur_count] = true;
-					q.push({ next_x,next_y,cur_depth + 1,cur_count });
+					q.push(make_pair(Point(nx, ny, cur_cnt + 1), cur_depth + 1));
+					visited[ny][nx][cur_cnt + 1] = true;
 				}
-				else if (graph[next_y][next_x] == 1 && cur_count +1 <= k && !visited[next_y][next_x][cur_count + 1])
+				else if (graph[ny][nx] == 0 && !visited[ny][nx][cur_cnt])
 				{
-					visited[next_y][next_x][cur_count+1] = true;
-					q.push({ next_x,next_y,cur_depth + 1,cur_count+1 });
+					q.push(make_pair(Point(nx, ny, cur_cnt), cur_depth + 1));
+					visited[ny][nx][cur_cnt] = true;
 				}
 			}
 		}
+
 	}
-	return -1;
+	return dist;
 }
 
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	cin >> n >> m >> k;
+	string str = "";
 	graph.resize(n, vector<int>(m));
-	
-	string s = "";
+
 	for (int i = 0; i < n; i++)
 	{
-		cin >> s;
+		cin >> str;
 		for (int j = 0; j < m; j++)
 		{
-			graph[i][j] = s[j] - '0';
+			graph[i][j] = str[j] - '0';
 		}
-	}	
-	cout << FindDist();
+	}
+	int answer = BFS();
+	cout << answer;
 	return 0;
 }
