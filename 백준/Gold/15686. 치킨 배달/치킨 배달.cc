@@ -1,78 +1,83 @@
-/*
-치킨집과 집 사이의 거리를 계산하는 문제이기 때문에 주어진 전체 graph를 전부 저장하지 않고 
-집과 치킨집의 좌표만 저장
-치킨집이 전체 K개라고 했을 때 그 중 주어진 m개만 선택 -> 조합 사용
-
-
-*/
-
 #include <bits/stdc++.h>
+
 using namespace std;
-int n = 0, m = 0;
-vector<pair<int, int>> house;
-vector<pair<int, int>> chicken;
-vector<pair<int, int>> tmp;
 
-int answer = INT_MAX;
+int n;
+int m;
+vector<pair<int, int>> chickens;
+vector<pair<int, int>> houses;
+vector<pair<int, int>> choose;
+vector<bool> visited;
+int min_dist = INT_MAX;
 
-void FindDist(int count,int idx)
+void Distance()
 {
-	if (count == m)
+	int dist = 0;
+	for (int i = 0; i < houses.size(); i++)
 	{
-		int total = 0;
-		for (int i = 0; i < house.size(); i++) //각 집 별로 가장 가까운 치킨 집의 거리
+		int hx = houses[i].first;
+		int hy = houses[i].second;
+		int hd = INT_MAX;
+		for (int j = 0; j < choose.size(); j++)
 		{
-			int min_dist = INT_MAX;
-			int x = house[i].first;
-			int y = house[i].second;
-			for (int j = 0; j < tmp.size(); j++)
-			{
-				int tx = tmp[j].first;
-				int ty = tmp[j].second;
-				int dist = abs(tx - x) + abs(ty - y);
-				if (dist < min_dist)
-				{
-					min_dist = dist;
-				}
-			}
-			total += min_dist;
+			int cx = choose[j].first;
+			int cy = choose[j].second;
+			
+			int tmp = abs(hx - cx) + abs(hy - cy);
+			hd = min(hd, tmp);
 		}
-		answer = min(total, answer);
+		dist += hd;
+	}
+	min_dist = min(dist, min_dist);
+}
+
+void BackTracking(int cnt, int idx)
+{
+	if (cnt == m)
+	{
+		Distance();
 		return;
 	}
-	for (int i = idx; i < chicken.size(); i++)
-	{
 
-		tmp.emplace_back(make_pair(chicken[i].first, chicken[i].second)); // 저장
-		FindDist(count + 1, i+1);
-		tmp.pop_back(); // 상태 복구
-		
+	for (int i = idx; i < chickens.size(); i++)
+	{
+		if (!visited[i])
+		{
+			visited[i] = true;
+			choose.emplace_back(chickens[i]);
+			BackTracking(cnt + 1, i + 1);
+			choose.pop_back();
+			visited[i] = false;
+		}
 	}
 }
 
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	cin >> n >> m;
-	int num = 0;
+	int tmp;
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{
-			cin >> num;
-			if (num == 1)
+			cin >> tmp;
+			if (tmp == 2)
 			{
-				house.emplace_back(make_pair(j, i));//집 좌표
+				chickens.emplace_back(make_pair(j, i));
 			}
-			else if (num == 2)
+			else if (tmp == 1)
 			{
-				chicken.emplace_back(make_pair(j, i)); // 치킨집 좌표
+				houses.emplace_back(make_pair(j, i));
 			}
 		}
 	}
-	FindDist(0,0);
-	cout << answer;
+
+	visited.resize(chickens.size() , false);
+	BackTracking(0, 0);
+	cout << min_dist;
 	return 0;
 }
