@@ -1,67 +1,76 @@
 #include <bits/stdc++.h>
+
 using namespace std;
-int limit;
-int n = 0;
+
+int n;
+int min_value = INT_MAX;
 vector<bool> visited;
-vector<vector<int>> arr;
-int answer = INT_MAX;
-void Calc()
+
+void Calc(vector<vector<int>>vec)
 {
-	vector<int> a;
-	vector<int> b;
-	for (int i = 1; i < visited.size(); i++)
+	vector<int>s;
+	vector<int>l;
+	for (int i = 0; i < n; i++)
 	{
-		if (visited[i]) a.emplace_back(i);
-		else b.emplace_back(i);
+		if (visited[i]) s.emplace_back(i);
+		else l.emplace_back(i);
 	}
-	int num1 = 0;
-	int num2 = 0;
-	for (int i = 0; i < a.size(); i++)
+	int s_num = 0;
+	int l_num = 0;
+	for (int i = 0; i < s.size(); i++)
 	{
-		for (int j = i + 1; j < a.size(); j++)
+		int st = s[i];
+		int lt = l[i];
+		for (int j = 0; j < s.size(); j++)
 		{
-			num1 += arr[a[i]-1][a[j]-1] + arr[a[j]-1][a[i]-1];
-			num2 += arr[b[i]-1][b[j]-1] + arr[b[j]-1][b[i]-1];
+			int sn = s[j];
+			int ln = l[j];
+			s_num += vec[st][sn];
+			l_num += vec[lt][ln];
 		}
 	}
-	answer = min(answer, abs(num1 - num2));
+	int diff = s_num - l_num;
+	min_value = min(min_value, abs(diff));
+	return;
 }
-
-void Func(int idx , int count)
+void BackTracking(int cnt,  int idx ,vector<vector<int>> vec)
 {
-	if (count == limit)
+	if (cnt == (n/2))
 	{
-		Calc();
+		Calc(vec);
 		return;
 	}
-	for (int i = idx; i <= n; i++)
+	for (int i = idx; i < n; i++)
 	{
-		if (visited[i] == false)
+		if (!visited[i])
 		{
 			visited[i] = true;
-			Func(i + 1, count + 1);
+			BackTracking(cnt + 1, i + 1, vec);
 			visited[i] = false;
 		}
 	}
 }
+
+
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
+	
 	cin >> n;
-	arr.resize(n, vector<int>(n));
-	visited.resize(n+1);
+	visited.resize(n);
+	vector<vector<int>> vec(n, vector<int>(n));
+
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{
-			cin >> arr[i][j];
+			cin >> vec[i][j];
 		}
 	}
-	limit = n / 2;
-
-	Func(1, 0);
-    cout << answer;
+	BackTracking(0, 0, vec);
+    cout << min_value;
 	return 0;
 }
