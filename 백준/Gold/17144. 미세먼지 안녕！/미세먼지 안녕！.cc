@@ -1,98 +1,139 @@
 #include <bits/stdc++.h>
+
 using namespace std;
+vector<int> dx = { -1,0,1,0 };
+vector<int> dy = { 0,-1,0,1 };
+vector<vector<int>> vec;
+int r, c;
+int up_x, up_y;
+int down_x, down_y;
 
-int r, c, t;
-vector<vector<int>> graph;
-vector<pair<int, int>> air;
-vector<int> dx = { -1, 0, 1, 0 };
-vector<int> dy = { 0, -1, 0, 1 };
-
-bool isValid(int x, int y) {
-    return (x >= 0 && x < c) && (y >= 0 && y < r);
+bool IsValid(int x, int y)
+{
+	return (x >= 0 && x < c) && (y >= 0 && y < r);
 }
 
-void Dust() {
-    vector<vector<int>> temp(r, vector<int>(c, 0));
-
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            if (graph[i][j] > 0) {
-                int count = 0;
-                int spreadAmount = graph[i][j] / 5;
-
-                for (int d = 0; d < 4; d++) {
-                    int nx = j + dx[d];
-                    int ny = i + dy[d];
-
-                    if (isValid(nx, ny) && graph[ny][nx] != -1) {
-                        temp[ny][nx] += spreadAmount;
-                        count++;
-                    }
-                }
-
-                graph[i][j] -= spreadAmount * count;
-            }
-        }
-    }
-
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            if (graph[i][j] != -1)
-                graph[i][j] += temp[i][j];
-        }
-    }
+void SpreadDust()
+{
+	vector<vector<int>> tmp(r, vector<int>(c, 0));
+	for (int i = 0; i < r; i++)
+	{
+		for (int j = 0; j < c; j++)
+		{
+			if (vec[i][j] == 0) continue;
+			if (vec[i][j] < 5)
+			{
+				tmp[i][j] += vec[i][j];
+				continue;
+			}
+			int dust = vec[i][j];
+			int cnt = 0;
+			int spread = dust / 5;
+			for (int p = 0; p < 4; p++)
+			{
+				int nx = j + dx[p];
+				int ny = i + dy[p];
+				if (IsValid(nx, ny) && vec[ny][nx] != -1)
+				{
+					cnt++;
+					tmp[ny][nx] += spread;
+				}
+			}
+			tmp[i][j] += dust - (spread * cnt);
+		}
+	}
+	vec = tmp;
 }
 
-void Wind() {
-    int top_y = air[0].second;
-    int bt_y = air[1].second;
-
-    for (int y = top_y - 1; y > 0; y--) graph[y][0] = graph[y - 1][0];
-    for (int x = 0; x < c - 1; x++) graph[0][x] = graph[0][x + 1];
-    for (int y = 0; y < top_y; y++) graph[y][c - 1] = graph[y + 1][c - 1];
-    for (int x = c - 1; x > 1; x--) graph[top_y][x] = graph[top_y][x - 1];
-    graph[top_y][1] = 0;
-
-
-    for (int y = bt_y + 1; y < r - 1; y++) graph[y][0] = graph[y + 1][0];
-    for (int x = 0; x < c - 1; x++) graph[r - 1][x] = graph[r - 1][x + 1];
-    for (int y = r - 1; y > bt_y; y--) graph[y][c - 1] = graph[y - 1][c - 1];
-    for (int x = c - 1; x > 1; x--) graph[bt_y][x] = graph[bt_y][x - 1];
-    graph[bt_y][1] = 0;
-
-
-    graph[top_y][0] = -1;
-    graph[bt_y][0] = -1;
+void AirCleaner()
+{
+	vector<vector<int>> tmp(r, vector<int>(c, 0));
+	tmp = vec;	
+	int sx = up_x;
+	int sy = up_y;
+	tmp[sy][sx] = 0;
+	tmp[sy+1][sx] = 0;
+	int lx = c - 1;
+	for (int i = sx; i < c -1 ; i++)
+	{
+		vec[sy][i+1] = tmp[sy][i];
+	}
+	for (int i = sy; i > 0; i--)
+	{
+		vec[i - 1][lx] = tmp[i][lx];
+	}
+	for (int i = lx; i > 0; i--)
+	{
+		vec[0][i - 1] = tmp[0][i];
+	}
+	for (int i = 0; i < sy -1; i++)
+	{
+		vec[i + 1][0] = tmp[i][0];
+	}
+	sy++;
+	int ly = r - 1;
+	for (int i = sx; i < c - 1; i++)
+	{
+		vec[sy][i + 1] = tmp[sy][i];
+	}
+	for (int i = sy; i < r-1; i++)
+	{
+		vec[i + 1][lx] = tmp[i][lx];
+	}
+	for (int i = lx; i > 0; i--)
+	{
+		vec[ly][i - 1] = tmp[ly][i];
+	
+	}
+	for (int i = ly; i > sy - 1; i--)
+	{
+		vec[i - 1][0] = tmp[i][0];
+	}
+	vec[up_y][up_x] = -1;
+	vec[up_y + 1][up_x] = -1;
 }
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
+	int t = 0;
+	cin >> r >> c >> t;
+	vec.resize(r, vector<int>(c));
+	
+	bool flag = false;
 
-    cin >> r >> c >> t;
-    graph.resize(r, vector<int>(c, 0));
+	for (int i = 0; i < r; i++)
+	{
+		for (int j = 0; j < c; j++)
+		{
+			cin >> vec[i][j];
+			if (vec[i][j] == -1 && !flag)
+			{
+				up_x = j;
+				up_y = i;
+				flag = true;
+			}
+		}
+	}
+	
+	while (t--)
+	{
+		SpreadDust();
+		AirCleaner();
+		int a = 0;
+	}
+	int answer = 0;
+	for (int i = 0; i < r; i++)
+	{
+		for (int j = 0; j < c; j++)
+		{
+			if (vec[i][j] == -1) continue;
 
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            cin >> graph[i][j];
-            if (graph[i][j] == -1) {
-                air.emplace_back(j, i);
-            }
-        }
-    }
-
-    for (int count = 0; count < t; count++) {
-        Dust();
-        Wind();
-    }
-
-    int answer = 0;
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            if (graph[i][j] > 0) answer += graph[i][j];
-        }
-    }
-
-    cout << answer;
-    return 0;
+			answer += vec[i][j];
+		}
+	}
+	cout << answer;
+	return 0;
 }
