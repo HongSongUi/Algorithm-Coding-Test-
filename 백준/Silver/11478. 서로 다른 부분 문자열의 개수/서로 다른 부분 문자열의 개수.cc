@@ -1,28 +1,29 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
 using namespace std;
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    
-    string s = "";
-    cin >> s;
-    map<string, int> tmp;
-    for (int i = 1; i < s.length(); i++)
-    {
-        for (int j = 0; j < s.length(); j++)
-        {
-            if (j + i <= s.length())
-            {
-                string t = s.substr(j, i);
-                tmp[t]++;
-            }      
-            else
-            {
-                break;
-            }
-        }
-    }
-    cout << tmp.size()+1;
-    return 0;
+
+
+
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	
+	string s;	
+	cin >> s;
+	map<string, int> cnt;
+	
+	string tmp = "";
+	for (int i = 0; i < s.length(); i++)
+	{
+		for (int j = 1; j <= s.length(); j++)
+		{
+			tmp = s.substr(i, j);
+			cnt[tmp]++;
+		}
+	}
+	cout << cnt.size();
+	return 0;
 }
