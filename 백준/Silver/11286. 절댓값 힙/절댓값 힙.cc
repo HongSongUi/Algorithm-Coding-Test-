@@ -1,49 +1,61 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
 using namespace std;
 
-struct cmp
+struct Number
 {
-	bool operator() (int a, int b)
+	int num;
+	int abs_num;
+	Number()
 	{
-		if (abs(a) == abs(b)) 
-		{
-			
-			return a > b;
-		}
-		
-		return abs(a) > abs(b);
+		num = 0;
+		abs_num = 0;
+	}
+	Number(int n, int a)
+	{
+		num = n;
+		abs_num = a;
 	}
 };
-
+struct cmp
+{
+	bool operator()(Number a, Number b)
+	{
+		if (a.abs_num == b.abs_num) return a.num > b.num;
+		return a.abs_num > b.abs_num;
+	}
+};
 int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
-	
-	int count = 0;
-	int num = 0;
-	cin >> count;
-	priority_queue<int, vector<int>, cmp> q;
-	while (count > 0)
+
+	int n = 0;
+	cin >> n;
+
+	priority_queue<Number, vector<Number>, cmp> pq;
+	int x = 0;
+	while (n--)
 	{
-		cin >> num;
-		if (num != 0)
+		cin >> x;
+		if (x != 0)
 		{
-			q.push(num);
+			pq.push(Number(x, abs(x)));
 		}
-		else
+		else if (x == 0)
 		{
-			if (q.size() == 0)
+			if (pq.empty())
 			{
 				cout << 0 << '\n';
 			}
 			else
 			{
-				cout << q.top() << '\n';
-				q.pop();
+				cout << pq.top().num << '\n';
+				pq.pop();
 			}
 		}
-		count--;
 	}
+
+	return 0;
 }
