@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
 using namespace std;
+
 
 int main()
 {
@@ -9,13 +11,12 @@ int main()
 
 	int n = 0;
 	cin >> n;
-	
+	int num = 0;
 	priority_queue<int, vector<int>, greater<int>> pq;
-	int x = 0;
-	while (n--)
+	for (int i = 0; i < n; i++)
 	{
-		cin >> x;
-		if (x == 0)
+		cin >> num;
+		if (num == 0)
 		{
 			if (pq.empty())
 			{
@@ -29,12 +30,9 @@ int main()
 		}
 		else
 		{
-			pq.push(x);
+			pq.push(num);
 		}
-
 	}
-
-
 
 	return 0;
 }
