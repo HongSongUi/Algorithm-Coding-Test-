@@ -1,37 +1,36 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
 using namespace std;
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    
-    int n = 0;
-    cin >> n;
-    priority_queue<int> pq;
 
-    int num = 0;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> num;
-        pq.push(-num);
-    }
-    int answer = 0;
-    int cost = 0;
-    while (pq.size() > 1)
-    {
-        cost = 0;
-        for (int i = 0; i < 2; i++)
-        {
-            if (!pq.empty())
-            {
-                cost += -pq.top();
-                pq.pop();
-            }
-        }
-        answer += cost;
-        if (pq.size() == 0) break;
-        pq.push(-cost);
-    }
-    cout << answer;
-    return 0;
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+	int n = 0;
+	cin >> n;
+	priority_queue<int,vector<int>, greater<int>> pq;
+	int tmp = 0;
+	for (int i = 0; i < n; i++)
+	{
+		cin >> tmp;
+		pq.push(tmp);
+	}
+	int answer = 0;
+	while (pq.size() >1)
+	{
+		int n1 = pq.top();
+		pq.pop();
+
+		int n2 = pq.top();
+		
+		pq.pop();
+		answer += n1 + n2;
+		
+		pq.push(n1 + n2);
+	}
+	cout << answer;
+	return 0;
 }
