@@ -1,12 +1,25 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
 using namespace std;
 
-bool cmp(const pair<int, int>& a, const pair<int, int>& b)
+struct t
 {
-	if (a.second == b.second) return a.first < b.first;
-	return a.second < b.second;
-}
-
+	int s = 0;
+	int e = 0;
+	t(int s, int e)
+	{
+		this->s = s;
+		this->e = e;
+	}
+};
+struct cmp
+{
+	bool operator()(t a, t b)
+	{
+		if (a.e == b.e) return a.s > b.s;
+		return a.e > b.e;
+	}
+};
 
 int main()
 {
@@ -16,25 +29,30 @@ int main()
 
 	int n = 0;
 	cin >> n;
-	vector<pair<int, int>> tmp(n);
-	int s = 0;
-	int e = 0;
+	int s_t, e_t;
+
+	priority_queue<t,vector<t>,cmp>pq;
 	for (int i = 0; i < n; i++)
 	{
-		cin >> s >> e;
-		tmp[i] = make_pair(s, e);
+		cin >> s_t >> e_t;
+		pq.push(t(s_t, e_t));
 	}
-	sort(tmp.begin(), tmp.end(), cmp);
-	int answer = 0;
-	e = 0;
-	for (int i = 0; i < n; i++)
+	int cnt = 0;
+	int cur_time = 0;
+	while (!pq.empty())
 	{
-		if (tmp[i].first >= e)
+		int s = pq.top().s;
+		int e = pq.top().e;
+
+		pq.pop();
+		if (s >= cur_time)
 		{
-			e = tmp[i].second;
-			answer++;
+			cur_time = e;
+			cnt++;
 		}
+
 	}
-	cout << answer;
+
+	cout << cnt;
 	return 0;
 }
