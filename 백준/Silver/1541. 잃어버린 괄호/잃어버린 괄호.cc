@@ -1,46 +1,46 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
 using namespace std;
+
+bool cmp(pair<int, int> a, pair<int, int> b)
+{
+	if (a.first == b.first) return a.second < b.second;
+	return a.first < b.first;
+}
 
 int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	string str = "";
+	cin >> str;
+
+	int answer = 0;
 	
-	int n = 0;
-	string buff = "";
-	cin >> buff;
-	int num = 0;
-	int sum = 0;
-	string temp = "";
-	bool plag = false;
-	for (int i = 0; i < buff.length()+1; i++)
+	bool flag = false;
+	string tmp = "";
+	for (int i = 0; i < str.length(); i++)
 	{
-		if (buff[i] >= '0' && buff[i] <= '9')
+		if (str[i] >= '0' && str[i] <= '9')
 		{
-			temp += buff[i];
+			tmp += str[i];
 		}
-		else
-		{	
-			int num = stoi(temp);
-			if (plag == false)
-			{
-				sum += num;
-			}
-			else
-			{
-				if (num > 0)
-				{
-					num *= -1;
-				}
-				sum += num;
-			}
-			if (buff[i] == '-')
-			{
-				plag = true;
-			}
-			temp = "";
+		else 
+		{
+			int d = (flag == false) ? 1 : -1;
+			int n = stoi(tmp);
+			n *= d;
+			answer += n;
+			tmp = "";
 		}
+		if (str[i] == '-') flag = true;
 	}
-	cout << sum;
+	int d = (flag == false) ? 1 : -1;
+	int n = stoi(tmp);
+	n *= d;
+	answer += n;
+	cout << answer;
+	return 0;
 }
