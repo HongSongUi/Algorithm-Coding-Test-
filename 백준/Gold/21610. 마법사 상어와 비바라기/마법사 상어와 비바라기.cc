@@ -1,128 +1,125 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
+
 using namespace std;
 
-vector<pair<int, int>> dir = { {-1,0} ,{-1,-1},{0,-1},{1,-1} ,{1,0},{1,1},{0,1},{-1,1} }; // x,y
-vector<pair<int, int>> diag = { {-1,-1},{1,-1},{1,1},{-1,1} }; // x,y
 int n = 0, m = 0;
-bool IsVaild(int x, int y)
+vector<pair<int, int>> dir = { {-1,0} ,{-1,-1},{0,-1} ,{1,-1},{1,0} ,{1,1},{0,1},{-1,1} }; // x y
+vector<vector<int>> graph;
+vector<vector<bool>> cloud;
+queue<pair<int, int>> cloud_q;
+queue<pair<int, int>> wq;
+bool IsValid(int x, int y)
 {
 	return (x >= 0 && x < n) && (y >= 0 && y < n);
 }
-void MoveCloud(vector<vector<bool>>& cloud, vector<vector<int>>& arr ,int d, int s )
+
+void MoveCloud(int d, int s)
 {
-	vector<vector<bool>> tmp(n, vector<bool>(n, false));
-	for (int i = 0; i < n; i++)
+	vector<vector<bool>> nCloud(n, vector<bool>(n, false));
+	queue<pair<int, int>>t;
+	while (!cloud_q.empty())
 	{
-		for (int j = 0; j < n; j++)
-		{
-			if (!cloud[i][j]) continue;
+		int cur_x = cloud_q.front().first;
+		int cur_y = cloud_q.front().second;
+		cloud_q.pop();
+		int dx = dir[d].first;
+		int dy = dir[d].second;
+		
+		int nx = cur_x + (dx * s);
+		int ny = cur_y + (dy * s);
 
-			int cur_x = j;
-			int cur_y = i;
-			pair<int, int> move = make_pair(dir[d].first * s, dir[d].second * s); // x,y;
-			int next_x = cur_x + move.first;
-			next_x %= n;
-			if (next_x < 0)
-			{
-				next_x = n + next_x;		
-			}
-			int next_y = cur_y + move.second;
-			next_y %= n;
-			if (next_y < 0)
-			{
-				next_y = n + next_y;
-			}
-			
-			tmp[next_y][next_x] = true;
-		}
+		nx %= n;
+		ny %= n;
+		if (nx < 0) nx += n;
+		if (ny < 0) ny += n;
+		graph[ny][nx]++;
+		t.push(make_pair(nx, ny));
+		nCloud[ny][nx] = true;
 	}
-	cloud = tmp; 
-	for (int i = 0; i < n; i++)
+	cloud = nCloud;
+	wq = t;
+}
+void CopyWater()
+{
+	while (!wq.empty())
 	{
-		for (int j = 0; j < n; j++)
+		int cur_x = wq.front().first;
+		int cur_y = wq.front().second;
+		wq.pop();
+		int cnt = 0;
+		for (int i = 1; i < 8; i+=2)
 		{
-			if (!cloud[i][j]) continue;
+			int nx = cur_x + dir[i].first;
+			int ny = cur_y + dir[i].second;
 
-			arr[i][j]++;
+			if (IsValid(nx, ny) && graph[ny][nx] > 0)
+			{
+				cnt++;
+			}
 		}
+		graph[cur_y][cur_x] += cnt;
 	}
 }
-void CopyWater(vector<vector<bool>>& cloud, vector<vector<int>>& arr)
+void MakeCloud()
 {
+	bool flag = false;
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{
-			if (!cloud[i][j]) continue;
-			int cur_x = j;
-			int cur_y = i;
-			int cnt = 0;
-			for (int p = 0; p < 4; p++)
+			flag = false;
+			if (graph[i][j] >= 2&& !cloud[i][j])
 			{
-				int next_x = cur_x + diag[p].first;
-				int next_y = cur_y + diag[p].second;
-				if (IsVaild(next_x, next_y) && arr[next_y][next_x] > 0)
-				{
-					cnt++;
-				}
-			}
-			arr[cur_y][cur_x] += cnt;
-		}
-	}
-}
-void CreateCloud(vector<vector<bool>>& cloud, vector<vector<int>>& arr)
-{
-	vector<vector<bool>> tmp(n, vector<bool>(n, false));
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			if (arr[i][j] >= 2 && !cloud[i][j])
-			{
-				tmp[i][j] = true;
-				arr[i][j] -= 2;
+				graph[i][j] -= 2;
+				cloud_q.push(make_pair(j, i));
+
 			}
 		}
 	}
-	cloud = tmp;
 }
 int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
-
-
-	cin >> n >> m;
-	vector<vector<int>> arr(n, vector<int>(n, 0));
-	vector<vector<bool>> cloud(n, vector<bool>(n, false));
+	
+	cin >> n>>m;
+	graph.resize(n, vector<int>(n));
+	cloud.resize(n, vector<bool>(n, false));
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{
-			cin >> arr[i][j];
+			cin >> graph[i][j];
 		}
 	}
-	int d = 0;
-	int s = 0;
-
-	cloud[n - 1][0] = true;
-	cloud[n - 1][1] = true;
-	cloud[n - 2][0] = true;
-	cloud[n - 2][1] = true;
-	while (m--)
+	queue<pair<int, int>> q; // d s
+	int d = 0, s = 0;
+	for (int i = 0; i < m; i++)
 	{
 		cin >> d >> s;
-		MoveCloud(cloud, arr, d-1, s);
-		CopyWater(cloud, arr);
-		CreateCloud(cloud, arr);
+		q.push(make_pair(d, s));
+	}
+	cloud_q.push(make_pair(0, n - 1));
+	cloud_q.push(make_pair(1, n - 1));
+	cloud_q.push(make_pair(0, n - 2));
+	cloud_q.push(make_pair(1, n - 2));
+	while (!q.empty())
+	{
+		int cur_d = q.front().first-1;
+		int cur_s = q.front().second;
+		q.pop();
+		MoveCloud(cur_d, cur_s);
+		CopyWater();
+		MakeCloud();
 	}
 	int answer = 0;
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{
-			answer += arr[i][j];
+			answer += graph[i][j];
 		}
 	}
 	cout << answer;
