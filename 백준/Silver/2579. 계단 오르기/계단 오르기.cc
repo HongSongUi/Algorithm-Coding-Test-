@@ -1,5 +1,9 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include <unordered_map>
+
+using namespace std; 
+
+
 
 int main()
 {
@@ -9,17 +13,19 @@ int main()
 	
 	int n = 0;
 	cin >> n;
-	vector<int> buff(n + 1, 0);
-	vector<int> max_buff(n + 1, 0);
-	for (int i = 1; i <= n ; i++)
+	vector<int>vec(n+1,0);
+	for (int i = 0; i < n; i++)
 	{
-		cin >> buff[i];
+		cin >> vec[i+1];
 	}
-	max_buff[1] = buff[1];
-	max_buff[2] = buff[2]+buff[1];
+	vector<int>dp(n + 1);
+	dp[0] = 0;
+	dp[1] = vec[1];
+	dp[2] = vec[2] + dp[1];
 	for (int i = 3; i <= n; i++)
 	{
-		max_buff[i] = max(buff[i] + buff[i - 1] + max_buff[i - 3], buff[i] + max_buff[i - 2]);
+		dp[i] = vec[i] + max(dp[i - 2] , dp[i - 3] + vec[i - 1]);
 	}
-	cout << max_buff[n];
+	cout << dp[n];
+	return 0;
 }
