@@ -1,5 +1,8 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include <unordered_map>
+
+using namespace std; 
+
 
 
 int main()
@@ -7,25 +10,23 @@ int main()
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
-
-	int n = 0 ,  t = 0;
+	
+	int n = 0, t = 0;
 	cin >> n >> t;
-	vector<int> arr(n+1);
-	vector<int> sum(n+1,0);
-	for (int i = 1; i <= n; i++)
+
+	vector<int> vec(n);
+	vector<int> dp(n+1,0);
+	for (int i = 0; i < n; i++)
 	{
-		cin >> arr[i];
+		cin >> vec[i];
+		dp[i + 1] = dp[i] + vec[i];
 	}
-	for (int i = 1; i <= n; i++)
-	{
-		sum[i] = sum[i - 1] + arr[i];
-	}
-	int s = 0;
-	int e = 0;
 	while (t--)
 	{
+		int s = 0;
+		int e = 0;
 		cin >> s >> e;
-		cout << sum[e] - sum[s - 1] << '\n';
+		cout << dp[e] - dp[s - 1] << '\n';
 	}
 	return 0;
 }
