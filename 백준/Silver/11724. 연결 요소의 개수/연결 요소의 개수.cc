@@ -1,19 +1,32 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include <unordered_map>
 
-void DFS(int point,vector<vector<int>>& buff, vector<bool>& visit)
+using namespace std; 
+
+int n, m;
+vector<vector<int>> graph;
+vector<bool> visited;
+
+void BFS(int p)
 {
-	visit[point] = true;
-	int num = 0;
-	for (int i = 0; i < buff[point].size(); i++)
+	visited[p] = true;
+	queue<int> q;
+	q.push(p);
+	while (!q.empty())
 	{
-		num = buff[point][i];
-		if (visit[num] == false)
+		int cur = q.front();
+		q.pop();
+
+		for (int i = 0; i < graph[cur].size(); i++)
 		{
-			DFS(num, buff, visit);
+			int next_p = graph[cur][i];
+			if (!visited[next_p])
+			{
+				visited[next_p] = true;
+				q.push(next_p);
+			}
 		}
 	}
-	return;
 }
 
 int main()
@@ -22,27 +35,27 @@ int main()
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	int N = 0;
-	int M = 0;
-	cin >> N >> M;
-	vector<vector<int>> buff(N + 1);
-	vector<bool> visit(N + 1, false);
-	int num1 = 0;
-	int num2 = 0;
-	int count = 0;
-	for (int i = 0; i < M; i++)
+	cin >> n >> m;
+
+	graph.resize(n+1);
+
+	int s, e;
+	for (int i = 0; i < m; i++)
 	{
-		cin >> num1 >> num2;
-		buff[num1].emplace_back(num2);
-		buff[num2].emplace_back(num1);
+		cin >> s >> e;
+		graph[s].emplace_back(e);
+		graph[e].emplace_back(s);
 	}
-	for (int i = 1; i < visit.size(); i++)
+	visited.resize(n+1, false);
+	int answer = 0;
+	for (int i = 1; i <= n; i++)
 	{
-		if (visit[i] == false)
+		if (visited[i] == false)
 		{
-			DFS(i, buff, visit);
-			count++;
+			answer++;
+			BFS(i);
 		}
 	}
-	cout << count;
+	cout << answer;
+	return 0;
 }
