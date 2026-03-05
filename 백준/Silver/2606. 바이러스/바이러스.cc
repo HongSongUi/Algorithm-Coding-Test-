@@ -1,40 +1,63 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include <unordered_map>
 
-void DFS(int num,int& count ,vector<vector<int>>& graph, vector<bool>& visit)
+using namespace std; 
+
+int n, m;
+vector<vector<int>> graph;
+vector<bool> visited;
+
+int bfs()
 {
-	visit[num] = true;
-	for (int i = 0; i < graph[num].size(); i++)
+	visited[1] = true;
+	queue<pair<int, int>> q;
+	int ret = 0;
+	q.push(make_pair(1, 0));
+
+	while (!q.empty())
 	{
-		int temp = graph[num][i];
-		if (visit[temp] == false)
+		int cur_node = q.front().first;
+		int cur_d = q.front().second;
+
+		q.pop();
+
+		for (int i = 0; i < graph[cur_node].size(); i++)
 		{
-			DFS(temp, count, graph, visit);
-			count++;
+			int next_node = graph[cur_node][i];
+			if (visited[next_node] == false)
+			{
+				visited[next_node] = true;
+				q.push(make_pair(next_node, cur_d + 1));
+				ret++;
+			}
 		}
 	}
+	return ret;
 }
+
+
 int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
-	
-	int n = 0;
-	int k = 0;
-	cin >> n;
-	cin >> k;
-	int num1 = 0;
-	int num2 = 0;
-	vector<vector<int>> graph(n+1);
-	vector<bool> visit(n+1);
-	int count = 0;
-	for (int i = 0; i < k; i++)
+
+	cin >> n >> m;
+
+	graph.resize(n + 1);
+	visited.resize(n + 1);
+	int s, e;
+
+	for (int i = 0; i < m; i++)
 	{
-		cin >> num1 >> num2;
-		graph[num1].emplace_back(num2);
-		graph[num2].emplace_back(num1);
+		cin >> s >> e;
+		graph[s].emplace_back(e);
+		graph[e].emplace_back(s);
 	}
-	DFS(1,count, graph, visit);
-	cout << count;
+
+	int answer = bfs();
+	
+	cout << answer;
+
+	return 0;
 }
