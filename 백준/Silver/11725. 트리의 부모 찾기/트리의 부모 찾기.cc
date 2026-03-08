@@ -1,51 +1,57 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include <unordered_map>
 
-void FindParent(vector<vector<int>>& tree, vector<int>& parent_arr)
+using namespace std; 
+
+int n = 0;
+vector<vector<int>> graph;
+vector<int> p;
+
+void BFS()
 {
-	vector<bool> visited(tree.size(), false);
-	queue<int> q;
-	q.push(1);
+	vector<bool> visited(n + 1);
 	visited[1] = true;
+	queue<int>q;
+	q.push(1);
 	while (!q.empty())
 	{
-		int cur = q.front();
+		int cur_node = q.front();
 		q.pop();
-		for (int i = 0; i < tree[cur].size(); i++)
+
+		for (int i = 0; i < graph[cur_node].size(); i++)
 		{
-			int next_point = tree[cur][i];
-
-			if (visited[next_point] == false)
+			int next_node = graph[cur_node][i];
+			if (visited[next_node] == false)
 			{
-				parent_arr[next_point] = cur;
-				q.push(next_point);
-				visited[next_point] = true;
+				visited[next_node] = true;
+				q.push(next_node);
+				p[next_node] = cur_node;
 			}
-
 		}
 	}
 }
 
-int main() {
+int main()
+{
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	int n = 0;
 	cin >> n;
-	vector<vector<int>> tree(n + 1);
-	int parent = 0;
-	int child = 0;
-	for (int i = 0; i < n - 1; i++)
+	p.resize(n + 1);
+	graph.resize(n+1);
+
+	int s, e;
+	for (int i = 0; i < n-1; i++)
 	{
-		cin >> parent >> child;
-		tree[parent].emplace_back(child);
-		tree[child].emplace_back(parent);
+		cin >> s >> e;
+		graph[s].emplace_back(e);
+		graph[e].emplace_back(s);
 	}
-	vector<int> parent_arr(n + 1, 0);
-	FindParent(tree, parent_arr);
-	for (int i = 2; i < parent_arr.size(); i++)
+	BFS();
+	for (int i = 2; i <= n; i++)
 	{
-		cout << parent_arr[i] << '\n';
+		cout << p[i] << '\n';
 	}
+	return 0;
 }
