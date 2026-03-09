@@ -1,57 +1,67 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include <unordered_map>
 
-pair<int,int> DFS(int start, vector<vector<pair<int, int>>>& tree)
+using namespace std; 
+
+int n;
+
+vector<vector<pair<int,int>>> graph;
+
+void BFS(int p , int& far_node, int& far_dist)
 {
-    vector<bool> visited(tree.size());
-    int max_dist = -1;
-    int fNode = 0;
-    stack<pair<int,int>> buff;
-    visited[start] = true;
-    buff.push(make_pair(start, 0));
-    while (!buff.empty())
-    {
-        int cur_node = buff.top().first;
-        int cur_dist = buff.top().second;
-        if (cur_dist > max_dist)
-        {
-            max_dist = cur_dist;
-            fNode = cur_node;
-        }
-        buff.pop();
-        for (int i = 0; i < tree[cur_node].size(); i++)
-        {
-            int next_node = tree[cur_node][i].first;
-            int next_dist = tree[cur_node][i].second + cur_dist;
-            if (visited[next_node] == false)
-            {
-                buff.push(make_pair(next_node, next_dist));
-                visited[next_node] = true;
-            }
-        }
-    }
+	vector<bool> visited(n + 1);
+	visited[p] = true;
+	queue<pair<int, int>> q;
+	q.push(make_pair(p, 0));
+	int d = 0;
+	while (!q.empty())
+	{
+		int cur_node = q.front().first;
+		int cur_dist = q.front().second;
+		if (d < cur_dist)
+		{
+			d = cur_dist;
+			far_node = cur_node;
+			far_dist = cur_dist;
+		}
+		q.pop();
 
-    return make_pair(fNode, max_dist);
+		for (int i = 0; i < graph[cur_node].size(); i++)
+		{
+			int next_node = graph[cur_node][i].first;
+			int next_dist = cur_dist + graph[cur_node][i].second;
+			if (!visited[next_node])
+			{
+				visited[next_node] = true;
+				q.push(make_pair(next_node, next_dist));
+			}
+		}
+	}
 }
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    
-    int nCount = 0;
-    cin >> nCount;
-    vector<vector<pair<int, int>>> tree(nCount + 1);
 
-    int parent, child, cost;
-    for (int i = 0; i < nCount - 1; i++)
-    {
-        cin >> parent >> child >> cost;
-        tree[parent].emplace_back(make_pair(child, cost));
-        tree[child].emplace_back(make_pair(parent, cost));
-    }
-    pair<int,int> p = DFS(1, tree);
-    int answer = DFS(p.first, tree).second;
-    cout << answer;
-    return 0;
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	
+	cin >> n;
+
+	graph.resize(n + 1);
+	int s, e, c;
+
+	for (int i = 0; i < n - 1; i++)
+	{
+		cin >> s >> e >> c;
+		graph[s].emplace_back(make_pair(e, c));
+		graph[e].emplace_back(make_pair(s, c));
+	}
+	int n1 = 0;
+	int answer = 0;
+	int tmp = 0;
+	BFS(1, n1, answer);
+	BFS(n1, tmp, answer);
+	cout << answer;
+	return 0;
 }
