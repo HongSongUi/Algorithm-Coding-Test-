@@ -1,66 +1,79 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
+
 using namespace std;
 
-int n = 0, m = 0;
-vector<tuple<int, int, int>> edges;
-vector<int> p;
-int find(int x)
+vector<int>p;
+
+vector<int> rankVec;
+
+int Find(int x)
 {
-    if (p[x] < 0) return x;
-    return p[x] = find(p[x]);
+	if (p[x] == x) return x;
+	
+	return p[x] = Find(p[x]);
 }
-bool Uni(int u, int v)
+
+bool Union(int u, int v)
 {
-    u = find(u);
-    v = find(v);
-    if (u == v)
-    {
-        return false;
-    }
+	int up = Find(u);
+	int vp = Find(v);
 
-    if (p[u] < p[v])
-    {
-        p[v] = u;
-    }
-    else
-    {
-        p[u] = v;
-    }
-    return true;
+	if (up == vp) return true;
+
+	if (rankVec[up] < rankVec[vp])
+	{
+		p[up] = vp;
+	}
+	else if (rankVec[up] > rankVec[vp])
+	{
+		p[vp] = up;
+	}
+	else
+	{
+		p[up] = vp;
+		rankVec[vp]++;
+	}
+	return false;
 }
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
 
-    cin >> n >> m;
-    edges.resize(m);
-    p.resize(n + 1, -1);
-    int a, b, cost;
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-    for (int i = 0; i < m; i++)
-    {
-        cin >> a >> b >> cost;
-        edges[i] = make_tuple(cost, a, b);
-    }
-    sort(edges.begin(), edges.end());
-    int answer = 0;
-    int cnt = 0;
-    int max_cost = 0;
-    for (int i = 0; i < m; i++)
-    {
-        a = get<1>(edges[i]);
-        b = get<2>(edges[i]);
-        cost = get<0>(edges[i]);
-        if (Uni(a, b))
-        {
-            answer += cost;
-            cnt++;
-            max_cost = max(max_cost, cost);
-        }
-      
-        if (cnt == n - 1) break;
-    }
-    cout << answer - max_cost;
-    return 0;
+	int n = 0, m = 0;
+	cin >> n >> m;
+	p.resize(n + 1);
+	rankVec.resize(n + 1);
+	vector<tuple<int, int, int>> edges(m);
+	for (int i = 1; i <= n; i++)
+	{
+		p[i] = i;
+	}
+	int u, v, cost;
+
+	for (int i = 0; i < m; i++)
+	{
+		cin >> u >> v >> cost;
+		edges[i] = make_tuple(cost, u, v);
+	}
+	sort(edges.begin(), edges.end());
+	int answer = 0;
+	int cnt = 0;
+	int max_cost = 0;
+	for (int i = 0; i < m; i++)
+	{
+		u = get<1>(edges[i]);
+		v = get<2>(edges[i]);
+		cost = get<0>(edges[i]);
+		if (Union(u, v)) continue;
+		answer += cost;
+		cnt++;
+		max_cost = max(max_cost, cost);
+		if (cnt == n - 1) break;
+	}
+	cout << answer - max_cost;
+	return 0;
 }
