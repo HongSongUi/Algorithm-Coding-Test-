@@ -1,5 +1,9 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
+
 using namespace std;
+
+
 
 int main()
 {
@@ -7,47 +11,47 @@ int main()
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	int count = 0;
-	int num = 0;
-	int data = 0;
-	cin >> count;
-
-	string input_text = "";
-	while (count > 0)
+	int t = 0;
+	cin >> t;
+	while (t--)
 	{
-		multiset<int> temp;
-		cin >> num;
-		while (num > 0)
+		int k = 0;
+		cin >> k;
+		multiset<int> tmp;
+		string s = "";
+		int num = 0;
+		while (k>0)
 		{
-			cin >> input_text >> data;
-			if (input_text == "I")
+			cin >> s;
+			if (s == "I")
 			{
-				temp.insert(data);
+				cin >> num;
+				tmp.insert(num);
 			}
-			else if (input_text == "D")
+			else if (s == "D")
 			{
-				if (temp.size() != 0)
+				if (tmp.empty()) continue;
+				cin >> num;
+				if (num == 1)
 				{
-					if (data == -1)
-					{
-						temp.erase(temp.begin());
-					}
-					else
-					{
-						temp.erase(prev(temp.end()));
-					}
+					tmp.erase(--tmp.end());
+				}
+				else if (num == -1)
+				{
+					tmp.erase(tmp.begin());
 				}
 			}
-			num--;
+			k--;
 		}
-		if (temp.size() == 0)
+		if (tmp.empty())
 		{
 			cout << "EMPTY" << '\n';
 		}
 		else
 		{
-			cout << *prev(temp.end()) << " " << *temp.begin() << '\n';
-		}
-		count--;
+			cout << *--tmp.end() << ' ' << *tmp.begin() << '\n';
+;		}
 	}
+
+	return 0;
 }
