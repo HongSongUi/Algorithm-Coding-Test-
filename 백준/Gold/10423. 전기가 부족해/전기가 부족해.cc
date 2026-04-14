@@ -1,66 +1,68 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
+
 using namespace std;
 
-vector<int>p;
+vector<int> p;
 
-int find(int x)
+int FindParent(int x)
 {
-    if (p[x] == x) return x;
-    return p[x] = find(p[x]);
+	if (p[x] == x) return x;
+	return p[x] = FindParent(p[x]);
 }
-
-bool IsUnion(int u, int v)
+bool Union(int u, int v)
 {
-    u = find(u);
-    v = find(v);
-    if (u == v) return true;
-    p[u] = v;
-    return false;
+	int u_parent = FindParent(u);
+	int v_parent = FindParent(v);
+
+	if (u_parent == v_parent) return true;
+
+	p[u_parent] = v_parent;
+	return false;
 }
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    
-    int n = 0, m = 0, k = 0;
-    cin >> n >> m >> k;
-    vector<tuple<int, int, int>> edges(m);
-    
-    p.resize(n + 1);
-    for (int i = 1; i <= n; i++)
-    {
-        p[i] = i;
-    }
-    int num1 = 0;
-    for (int i = 0; i < k; i++)
-    {
-        cin >> num1;
-        p[num1] = 0;
-    }
-    int num2 = 0;
-    int cost = 0;
+	int n, m, k;
+	cin >> n >> m >> k;
+	p.resize(n+1);
+	for (int i = 0; i <= n; i++)
+	{
+		p[i] = i;
+	}
+	int city = 0;
+	for (int i = 0; i < k; i++)
+	{
+		cin >> city;
+		p[city] = 0;
+	}
+	vector<tuple<int, int, int>> edges(m);
+	int u, v, w;
+	for (int i = 0; i < m; i++)
+	{
+		cin >> u >> v >> w;
+		edges[i] = make_tuple(w, u, v);
+	}
+	sort(edges.begin(), edges.end());
 
-    for (int i = 0; i < m; i++)
-    {
-        cin >> num1 >> num2 >> cost;
-        edges[i] = { cost,num1,num2 };
-    }
-    sort(edges.begin(), edges.end());
-    int answer = 0;
-    int cnt = 0;
-    for (int i = 0; i < edges.size(); i++)
-    {
-        int u = get<1>(edges[i]);
-        int v = get<2>(edges[i]);
-        int c = get<0>(edges[i]);
-        if (IsUnion(u, v)) continue;
-        
-        answer += c;
-        cnt++;
-        if (cnt == n - 1) break;
-    }
-    cout << answer;
+	int answer = 0;
+	int cnt = 0;
 
-    return 0;
+	for (int i = 0; i < m; i++)
+	{
+		w = get<0>(edges[i]);
+		u = get<1>(edges[i]);
+		v = get<2>(edges[i]);
+
+		if (Union(u, v)) continue;
+
+		answer += w;
+		cnt++;
+		if (cnt == n - 1) break;
+	}
+	cout << answer;
+	return 0;
 }
