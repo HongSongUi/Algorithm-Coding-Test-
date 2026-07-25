@@ -7,6 +7,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 |  |
 | ------- |
 | [0027-remove-element](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0027-remove-element) |
+| [0080-remove-duplicates-from-sorted-array-ii](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0080-remove-duplicates-from-sorted-array-ii) |
 | [0088-merge-sorted-array](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0088-merge-sorted-array) |
 | [0150-evaluate-reverse-polish-notation](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0150-evaluate-reverse-polish-notation) |
 | [0636-exclusive-time-of-functions](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0636-exclusive-time-of-functions) |
@@ -29,6 +30,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 |  |
 | ------- |
 | [0027-remove-element](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0027-remove-element) |
+| [0080-remove-duplicates-from-sorted-array-ii](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0080-remove-duplicates-from-sorted-array-ii) |
 | [0088-merge-sorted-array](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0088-merge-sorted-array) |
 ## Sorting
 |  |
