@@ -29,6 +29,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 ## Two Pointers
 |  |
 | ------- |
+| [0019-remove-nth-node-from-end-of-list](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0019-remove-nth-node-from-end-of-list) |
 | [0027-remove-element](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0027-remove-element) |
 | [0080-remove-duplicates-from-sorted-array-ii](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0080-remove-duplicates-from-sorted-array-ii) |
 | [0088-merge-sorted-array](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0088-merge-sorted-array) |
@@ -40,6 +41,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 ## Linked List
 |  |
 | ------- |
+| [0019-remove-nth-node-from-end-of-list](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0019-remove-nth-node-from-end-of-list) |
 | [0021-merge-two-sorted-lists](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0021-merge-two-sorted-lists) |
 | [0141-linked-list-cycle](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0141-linked-list-cycle) |
 | [0206-reverse-linked-list](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0206-reverse-linked-list) |
