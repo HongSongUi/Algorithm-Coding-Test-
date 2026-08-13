@@ -55,6 +55,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 |  |
 | ------- |
 | [0141-linked-list-cycle](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0141-linked-list-cycle) |
+| [0387-first-unique-character-in-a-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0387-first-unique-character-in-a-string) |
 ## Floyd's Cycle Finding Algorithm
 |  |
 | ------- |
@@ -63,4 +64,13 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 |  |
 | ------- |
 | [0125-valid-palindrome](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0125-valid-palindrome) |
+| [0387-first-unique-character-in-a-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0387-first-unique-character-in-a-string) |
+## Queue
+|  |
+| ------- |
+| [0387-first-unique-character-in-a-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0387-first-unique-character-in-a-string) |
+## Counting
+|  |
+| ------- |
+| [0387-first-unique-character-in-a-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0387-first-unique-character-in-a-string) |
 <!---LeetCode Topics End-->
