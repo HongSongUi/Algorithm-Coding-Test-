@@ -6,6 +6,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 ## Array
 |  |
 | ------- |
+| [0014-longest-common-prefix](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0014-longest-common-prefix) |
 | [0027-remove-element](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0027-remove-element) |
 | [0080-remove-duplicates-from-sorted-array-ii](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0080-remove-duplicates-from-sorted-array-ii) |
 | [0088-merge-sorted-array](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0088-merge-sorted-array) |
@@ -63,6 +64,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 ## String
 |  |
 | ------- |
+| [0014-longest-common-prefix](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0014-longest-common-prefix) |
 | [0125-valid-palindrome](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0125-valid-palindrome) |
 | [0387-first-unique-character-in-a-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0387-first-unique-character-in-a-string) |
 ## Queue
@@ -73,4 +75,8 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 |  |
 | ------- |
 | [0387-first-unique-character-in-a-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0387-first-unique-character-in-a-string) |
+## Trie
+|  |
+| ------- |
+| [0014-longest-common-prefix](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0014-longest-common-prefix) |
 <!---LeetCode Topics End-->
