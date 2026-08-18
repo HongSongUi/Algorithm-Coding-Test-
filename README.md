@@ -18,6 +18,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | ------- |
 | [0020-valid-parentheses](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0020-valid-parentheses) |
 | [0150-evaluate-reverse-polish-notation](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0150-evaluate-reverse-polish-notation) |
+| [0155-min-stack](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0155-min-stack) |
 | [0636-exclusive-time-of-functions](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0636-exclusive-time-of-functions) |
 | [1047-remove-all-adjacent-duplicates-in-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/1047-remove-all-adjacent-duplicates-in-string) |
 | [1441-build-an-array-with-stack-operations](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/1441-build-an-array-with-stack-operations) |
@@ -89,4 +90,8 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 |  |
 | ------- |
 | [0020-valid-parentheses](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0020-valid-parentheses) |
+## Design
+|  |
+| ------- |
+| [0155-min-stack](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0155-min-stack) |
 <!---LeetCode Topics End-->
