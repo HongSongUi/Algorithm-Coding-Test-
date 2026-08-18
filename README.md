@@ -16,6 +16,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 ## Stack
 |  |
 | ------- |
+| [0020-valid-parentheses](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0020-valid-parentheses) |
 | [0150-evaluate-reverse-polish-notation](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0150-evaluate-reverse-polish-notation) |
 | [0636-exclusive-time-of-functions](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0636-exclusive-time-of-functions) |
 | [1441-build-an-array-with-stack-operations](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/1441-build-an-array-with-stack-operations) |
@@ -66,6 +67,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 |  |
 | ------- |
 | [0014-longest-common-prefix](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0014-longest-common-prefix) |
+| [0020-valid-parentheses](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0020-valid-parentheses) |
 | [0125-valid-palindrome](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0125-valid-palindrome) |
 | [0151-reverse-words-in-a-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0151-reverse-words-in-a-string) |
 | [0387-first-unique-character-in-a-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0387-first-unique-character-in-a-string) |
@@ -81,4 +83,8 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 |  |
 | ------- |
 | [0014-longest-common-prefix](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0014-longest-common-prefix) |
+## Bracket Sequences
+|  |
+| ------- |
+| [0020-valid-parentheses](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0020-valid-parentheses) |
 <!---LeetCode Topics End-->
