@@ -19,6 +19,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | [0020-valid-parentheses](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0020-valid-parentheses) |
 | [0150-evaluate-reverse-polish-notation](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0150-evaluate-reverse-polish-notation) |
 | [0155-min-stack](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0155-min-stack) |
+| [0225-implement-stack-using-queues](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0225-implement-stack-using-queues) |
 | [0394-decode-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0394-decode-string) |
 | [0636-exclusive-time-of-functions](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0636-exclusive-time-of-functions) |
 | [1047-remove-all-adjacent-duplicates-in-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/1047-remove-all-adjacent-duplicates-in-string) |
@@ -80,6 +81,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 ## Queue
 |  |
 | ------- |
+| [0225-implement-stack-using-queues](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0225-implement-stack-using-queues) |
 | [0387-first-unique-character-in-a-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0387-first-unique-character-in-a-string) |
 ## Counting
 |  |
@@ -97,4 +99,5 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 |  |
 | ------- |
 | [0155-min-stack](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0155-min-stack) |
+| [0225-implement-stack-using-queues](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0225-implement-stack-using-queues) |
 <!---LeetCode Topics End-->
