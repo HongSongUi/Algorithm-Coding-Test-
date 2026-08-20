@@ -11,6 +11,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | [0080-remove-duplicates-from-sorted-array-ii](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0080-remove-duplicates-from-sorted-array-ii) |
 | [0088-merge-sorted-array](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0088-merge-sorted-array) |
 | [0150-evaluate-reverse-polish-notation](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0150-evaluate-reverse-polish-notation) |
+| [0622-design-circular-queue](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0622-design-circular-queue) |
 | [0636-exclusive-time-of-functions](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0636-exclusive-time-of-functions) |
 | [1441-build-an-array-with-stack-operations](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/1441-build-an-array-with-stack-operations) |
 ## Stack
@@ -54,6 +55,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | [0021-merge-two-sorted-lists](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0021-merge-two-sorted-lists) |
 | [0141-linked-list-cycle](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0141-linked-list-cycle) |
 | [0206-reverse-linked-list](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0206-reverse-linked-list) |
+| [0622-design-circular-queue](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0622-design-circular-queue) |
 ## Recursion
 |  |
 | ------- |
@@ -85,6 +87,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | [0225-implement-stack-using-queues](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0225-implement-stack-using-queues) |
 | [0232-implement-queue-using-stacks](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0232-implement-queue-using-stacks) |
 | [0387-first-unique-character-in-a-string](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0387-first-unique-character-in-a-string) |
+| [0622-design-circular-queue](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0622-design-circular-queue) |
 ## Counting
 |  |
 | ------- |
@@ -103,4 +106,5 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | [0155-min-stack](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0155-min-stack) |
 | [0225-implement-stack-using-queues](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0225-implement-stack-using-queues) |
 | [0232-implement-queue-using-stacks](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0232-implement-queue-using-stacks) |
+| [0622-design-circular-queue](https://github.com/HongSongUi/Algorithm-Coding-Test-/tree/master/0622-design-circular-queue) |
 <!---LeetCode Topics End-->
